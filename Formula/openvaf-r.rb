@@ -13,11 +13,8 @@ class OpenvafR < Formula
     ENV["LLVM_SYS_181_PREFIX"] = Formula["llvm@18"].opt_prefix
     ENV.prepend_path "PATH", Formula["llvm@18"].opt_bin
 
-    # Build the release binary
-    system "cargo", "build", "--release", "--bin", "openvaf-r"
-
-    # Install the binary
-    bin.install "target/release/openvaf-r"
+    # Build and install the binary
+    system "cargo", "install", *std_cargo_args(path: "openvaf/openvaf-driver")
   end
 
   test do
