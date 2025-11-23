@@ -1,7 +1,7 @@
 class OpenvafR < Formula
   desc "Verilog-A compiler that outputs OSDI-compatible dynamic libraries"
   homepage "https://github.com/OpenVAF/OpenVAF-Reloaded"
-  license "GPL-3.0"
+  license "GPL-3.0-or-later"
   head "https://github.com/robtaylor/OpenVAF.git", branch: "master"
 
   depends_on "pkg-config" => :build
