@@ -1,8 +1,10 @@
 # Homebrew OpenVAF
 
-Homebrew tap for [OpenVAF-reloaded](https://github.com/OpenVAF/OpenVAF-Reloaded), a Verilog-A compiler that outputs OSDI-compatible dynamic libraries.
+Homebrew tap for [OpenVAF-Reloaded](https://github.com/robtaylor/OpenVAF), a Verilog-A compiler that outputs OSDI-compatible dynamic libraries.
 
 ## Installation
+
+### Install latest release (recommended)
 
 ```bash
 brew tap robtaylor/openvaf
@@ -15,24 +17,36 @@ Or install directly:
 brew install robtaylor/openvaf/openvaf-r
 ```
 
+This installs a pre-built binary, which is faster than building from source.
+
 ### Install HEAD (latest development version)
+
+To build from the latest source code:
 
 ```bash
 brew install --HEAD robtaylor/openvaf/openvaf-r
 ```
+
+Note: HEAD builds require Rust and LLVM 18, which will be installed automatically.
 
 ## Usage
 
 After installation, the `openvaf-r` binary will be available:
 
 ```bash
+# Check version
 openvaf-r --version
+
+# Compile a Verilog-A model
+openvaf-r model.va -o model.osdi
+
+# Show help
 openvaf-r --help
 ```
 
-## About OpenVAF-reloaded
+## About OpenVAF-Reloaded
 
-OpenVAF is a Verilog-A compiler that outputs dynamic libraries compatible with the OSDI API (version 0.4). The compiler was originally written by Pascal Kuthe and is now maintained as OpenVAF-reloaded with continued development and bug fixes.
+OpenVAF is a Verilog-A compiler that outputs dynamic libraries compatible with the OSDI API (version 0.4). The compiler was originally written by Pascal Kuthe and is now maintained as OpenVAF-Reloaded with continued development and bug fixes.
 
 ### OSDI 0.4 Features
 
@@ -44,14 +58,43 @@ OpenVAF is a Verilog-A compiler that outputs dynamic libraries compatible with t
 
 ## Requirements
 
-- macOS (tested on macOS 13+)
-- LLVM 18 (automatically installed as dependency)
-- Rust toolchain (automatically installed as dependency)
+- macOS 13+ (Ventura or later)
+- Apple Silicon (ARM64) or Intel (x86_64)
+
+For release builds, no additional dependencies are required - the binary is self-contained.
+
+For HEAD builds, the following are installed automatically:
+- LLVM 18
+- Rust toolchain
+
+## Updating
+
+```bash
+# Update the tap
+brew update
+
+# Upgrade openvaf-r
+brew upgrade openvaf-r
+```
+
+## Troubleshooting
+
+### HEAD build fails
+
+If building from HEAD fails, ensure you have the latest Xcode Command Line Tools:
+
+```bash
+xcode-select --install
+```
+
+### Release version not found
+
+If the release URL returns 404, the release may not have been published yet. Use `--HEAD` to build from source instead.
 
 ## Documentation
 
-- [OpenVAF-reloaded README](https://github.com/OpenVAF/OpenVAF-Reloaded)
-- [OSDI Specification](https://github.com/OpenVAF/OpenVAF-Reloaded/tree/master/openvaf/osdi/header)
+- [OpenVAF-Reloaded Documentation](https://github.com/robtaylor/OpenVAF)
+- [OSDI Specification](https://github.com/robtaylor/OpenVAF/tree/master/openvaf/osdi/header)
 - Homebrew documentation: `brew help`, `man brew` or [docs.brew.sh](https://docs.brew.sh)
 
 ## Contributing
